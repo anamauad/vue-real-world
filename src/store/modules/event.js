@@ -21,7 +21,9 @@ export default {
     }
   },
   actions: {
-    createEvent({ commit }, event) {
+    createEvent({ commit, rootState }, event) {
+      console.log(`user creating event is ${rootState.user.user.name}`)
+
       return EventService.postEvent(event).then(() =>
         commit('ADD_EVENT', event.data)
       )
