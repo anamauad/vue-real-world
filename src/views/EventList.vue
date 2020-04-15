@@ -1,9 +1,7 @@
 <template>
   <div>
-    <h1>
-      Event Listing <span class="count">({{ eventsCount }})</span>
-    </h1>
-    <event-card v-for="event in events" :key="event.id" :event="event" />
+    <h1>{{ event.eventsCount }} Events for {{ user.name }}</h1>
+    <event-card v-for="event in event.events" :key="event.id" :event="event" />
 
     <router-link
       v-if="page != 1"
@@ -35,9 +33,9 @@ export default {
       return parseInt(this.$route.query.page) || 1
     },
     hasNextPage() {
-      return this.eventsCount > this.page * 3
+      return this.event.eventsCount > this.page * 3
     },
-    ...mapState(['events', 'eventsCount'])
+    ...mapState(['event', 'user'])
   },
   created() {
     this.$store.dispatch('fetchEvents', {
@@ -48,10 +46,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.count {
-  margin-left: 5px;
-  font-size: 70%;
-  color: darkgray;
-}
-</style>
+<style scoped></style>

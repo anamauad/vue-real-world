@@ -35,7 +35,9 @@ export default {
     attending() {
       return this.event.attendees ? this.event.attendees.length : 0
     },
-    ...mapState(['event'])
+    ...mapState({
+      event: state => state.event.event
+    })
   },
   created() {
     this.$store.dispatch('fetchEvent', this.id)
