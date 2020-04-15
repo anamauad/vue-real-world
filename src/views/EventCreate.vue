@@ -66,12 +66,7 @@ export default {
       times
     }
   },
-  computed: {
-    catLength() {
-      return this.$store.getters.catLength
-    },
-    ...mapState(['categories', 'user'])
-  },
+  computed: mapState(['categories', 'user']),
   methods: {
     createFreshEventObject() {
       const username = this.$store.state.user.user.name
@@ -90,7 +85,7 @@ export default {
     },
     createEvent() {
       this.$store
-        .dispatch('createEvent', this.event)
+        .dispatch('event/createEvent', this.event)
         .then(() => {
           this.$router.push({
             name: 'event-show',

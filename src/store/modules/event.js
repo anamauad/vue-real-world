@@ -1,6 +1,7 @@
 import EventService from '@/services/EventService.js'
 
 export default {
+  namespaced: true,
   state: {
     events: [],
     eventsCount: 0,
@@ -36,8 +37,8 @@ export default {
         })
         .catch(error => console.log('Error', error.response))
     },
-    fetchEvent({ commit }, id) {
-      var event = this.getters.getEventyById(id)
+    fetchEvent({ commit, getters }, id) {
+      var event = getters.getEventyById(id)
 
       if (event) {
         commit('SET_EVENT', event)
