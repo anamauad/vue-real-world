@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     createFreshEventObject() {
-      const username = this.user.name
+      const username = this.$store.state.user.name
       const id = Math.floor(Math.random() + 10000000)
       return {
         id,
