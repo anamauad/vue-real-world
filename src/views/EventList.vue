@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ event.eventsCount }} Events for {{ user.name }}</h1>
+    <h1>{{ event.eventsCount }} Events for {{ user.user.name }}</h1>
     <event-card v-for="event in event.events" :key="event.id" :event="event" />
 
     <router-link
