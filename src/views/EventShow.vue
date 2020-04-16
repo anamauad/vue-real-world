@@ -20,14 +20,14 @@
         :key="index"
         class="list-item"
       >
-        <b>{{ attendee.name }}</b>
+        <b>{{ attendee }}</b>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   props: ['id'],
@@ -40,8 +40,9 @@ export default {
     })
   },
   created() {
-    this.$store.dispatch('fetchEvent', this.id)
-  }
+    this.fetchEvent(this.id)
+  },
+  methods: mapActions('event', ['fetchEvent']) // 1: namespace, 2: array of methods
 }
 </script>
 
