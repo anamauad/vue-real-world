@@ -12,7 +12,17 @@ const routes = [
   {
     path: '/',
     name: 'event-list',
-    component: EventList
+    component: EventList,
+    props: true,
+    beforeEnter(to, from, next) {
+      const currentPage = parseInt(to.query.page || 1)
+      // pre-rout guard
+      store
+        .dispatch('event/fetchEvents', {
+          page: currentPage
+        })
+        .then(() => next())
+    }
   },
   {
     path: '/event/:id',

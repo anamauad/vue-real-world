@@ -77,5 +77,5 @@ prettier   1.19.1  1.19.1   2.0.4  vue-real-world
     - Templates get rendered before the API call is returned
 - In-component route guards
   - Every component must be implement this
-- Global and per-route guards
+- Global and per-route guards <-- _better option_
   - Define load data methods in router configuration
