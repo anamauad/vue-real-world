@@ -1,6 +1,11 @@
 <template>
   <div>
-    <button v-on="$listeners" class="button">
+    <button
+      v-on="$listeners"
+      v-bind="$attrs"
+      class="button"
+      :class="buttonClass"
+    >
       <!-- v-on="$listeners" this element inherits the event listeners defined in this component  -->
       <slot>Submit</slot>
     </button>
@@ -8,7 +13,14 @@
 </template>
 
 <script>
-export default {}
+export default {
+  inheritAttrs: false,
+  props: {
+    buttonClass: {
+      type: String
+    }
+  }
+}
 </script>
 
 <style scoped>

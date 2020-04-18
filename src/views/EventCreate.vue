@@ -47,7 +47,9 @@
           :options="times"
         />
       </div>
-      <base-button type="submit">Submit a new event</base-button>
+      <base-button type="submit" buttonClass="-fill-gradient"
+        >Submit a new event</base-button
+      >
     </form>
   </div>
 </template>
