@@ -4,6 +4,7 @@ import EventList from '../views/EventList.vue'
 import EventShow from '../views/EventShow.vue'
 import EventCreate from '../views/EventCreate.vue'
 import NotFound from '../views/NotFound.vue'
+import NetworkIssue from '../components/NetworkIssue.vue'
 import NProgress from 'nprogress'
 import store from '@/store'
 
@@ -35,13 +36,24 @@ const routes = [
       store
         .dispatch('event/fetchEvent', to.params.id)
         .then(() => next())
-        .catch(() => next({ name: '404', params: { resource: 'event page' } }))
+        .catch(error => {
+          if (error.response && error.response.status == 404) {
+            next({ name: '404', params: { resource: 'event page' } })
+          } else {
+            next({ name: 'network-issue' })
+          }
+        })
     }
   },
   {
     path: '/event/new',
     name: 'event-create',
     component: EventCreate
+  },
+  {
+    path: '/network-issue',
+    name: 'network-issue',
+    component: NetworkIssue
   },
   {
     path: '/404',
