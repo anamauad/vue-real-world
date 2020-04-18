@@ -79,3 +79,7 @@ prettier   1.19.1  1.19.1   2.0.4  vue-real-world
   - Every component must be implement this
 - Global and per-route guards <-- _better option_
   - Define load data methods in router configuration
+
+## Componente de seleção em que as opções são objetos
+
+[https://vue-multiselect.js.org/]

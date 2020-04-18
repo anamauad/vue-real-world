@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import 'nprogress/nprogress.css'
+import Vuelidate from 'vuelidate'
 
 // import BaseIcon from '@/components/BaseIcon.vue'
 // Vue.component('BaseIcon', BaseIcon)
@@ -29,6 +30,8 @@ requireComponent.keys().forEach(fileName => {
 
 //
 Vue.config.productionTip = false
+
+Vue.use(Vuelidate)
 
 new Vue({
   router,

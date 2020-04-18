@@ -1,7 +1,7 @@
 <template>
   <div>
     <label v-if="label" :for="id">{{ label }}</label>
-    <input @input="updateValue" :value="value" :id="id" v-bind="$attrs" />
+    <input :value="value" :id="id" v-bind="$attrs" v-on="listeners" />
     <!-- v-bind=$attrs defines that this element will inherit the component attributes -->
   </div>
 </template>
@@ -15,6 +15,16 @@ export default {
     id: {
       type: String,
       required: true
+    }
+  },
+  computed: {
+    listeners() {
+      return {
+        // Pass all component listeners directly to input
+        ...this.$listeners,
+        // Override input listener to work with v-model
+        input: this.updateValue
+      }
     }
   },
   methods: {
