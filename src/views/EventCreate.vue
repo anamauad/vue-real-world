@@ -2,13 +2,16 @@
   <div>
     <h1>Create Event, {{ user.user.name }}</h1>
     <form @submit.prevent="createEvent">
-      <label>Select a category</label>
-      <select v-model="event.category">
-        <option v-for="cat in categories" :key="cat">{{ cat }}</option>
-      </select>
+      <base-select
+        v-model="event.category"
+        id="category"
+        label="Select a category"
+        :options="categories"
+      />
       <h3>Name & describe your event</h3>
       <base-input
         v-model="event.title"
+        id="title"
         label="Title"
         type="text"
         placeholder="Add an event title"
@@ -16,6 +19,7 @@
       />
       <base-input
         v-model="event.description"
+        id="description"
         label="Description"
         type="text"
         placeholder="Add a description"
@@ -24,6 +28,7 @@
       <h3>Where is your event?</h3>
       <base-input
         v-model="event.location"
+        id="location"
         label="Location"
         type="text"
         placeholder="Add a location"
@@ -35,10 +40,12 @@
         <datepicker v-model="event.date" placeholder="Select a date" />
       </div>
       <div class="field">
-        <label>Select a time</label>
-        <select v-model="event.time">
-          <option v-for="time in times" :key="time">{{ time }}</option>
-        </select>
+        <base-select
+          v-model="event.time"
+          id="time"
+          label="Select a time"
+          :options="times"
+        />
       </div>
       <input type="submit" class="button -fill-gradient" value="Submit" />
     </form>
@@ -50,11 +57,13 @@ import { mapState } from 'vuex'
 import Datepicker from 'vuejs-datepicker'
 import NProgress from 'nprogress'
 import BaseInput from '@/components/BaseInput.vue'
+import BaseSelect from '@/components/BaseSelect.vue'
 
 export default {
   components: {
     Datepicker,
-    BaseInput
+    BaseInput,
+    BaseSelect
   },
   data() {
     const times = []
