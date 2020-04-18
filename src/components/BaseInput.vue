@@ -1,7 +1,7 @@
 <template>
   <div>
-    <label v-if="label">{{ label }}</label>
-    <input @input="updateValue" :value="value" v-bind="$attrs" />
+    <label v-if="label" :for="id">{{ label }}</label>
+    <input @input="updateValue" :value="value" :id="id" v-bind="$attrs" />
     <!-- v-bind=$attrs defines that this element will inherit the component attributes -->
   </div>
 </template>
@@ -11,7 +11,11 @@ export default {
   inheritAttrs: false, // props will not be applied to the main div container
   props: {
     value: [String, Number],
-    label: String
+    label: String,
+    id: {
+      type: String,
+      required: true
+    }
   },
   methods: {
     updateValue(event) {
