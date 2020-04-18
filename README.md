@@ -76,4 +76,5 @@ prettier   1.19.1  1.19.1   2.0.4  vue-real-world
     - Not optimal for multiple API calls at the same time
     - Templates get rendered before the API call is returned
 - In-component route guards
+  - Every component must be implement this
 - Global and per-route guards
