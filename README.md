@@ -52,6 +52,12 @@ Vue CLI v4.3.1
 > json-server --watch db.json
 ```
 
+Para adicionar 1.5 segundos à resposta
+
+```
+> json-server -d 1500 db.json
+```
+
 ## Descobrir quais pacotes podem ser atualizados
 
 ```
@@ -59,3 +65,15 @@ Vue CLI v4.3.1
 Package   Current  Wanted  Latest  Location
 prettier   1.19.1  1.19.1   2.0.4  vue-real-world
 ```
+
+## Possíveis implementações de NProgress bar
+
+[NProgress](http://ricostacruz.com/nprogress/) is a progress bar library
+
+- API interceptors
+  - Axios Interceptors allow us to intercept our requests and responses adding additional functionality, like starting and stopping a progress bar
+  - Problems:
+    - Not optimal for multiple API calls at the same time
+    - Templates get rendered before the API call is returned
+- In-component route guards
+- Global and per-route guards
