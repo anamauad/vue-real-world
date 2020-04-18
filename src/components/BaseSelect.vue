@@ -4,9 +4,9 @@
     <select @change="updateValue" :value="value" :id="id" v-bind="$attrs">
       <option
         v-for="option in options"
-        :selected="options === value"
-        :value="option"
         :key="option"
+        :value="option"
+        :selected="option === value"
         >{{ option }}</option
       >
     </select>
