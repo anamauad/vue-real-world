@@ -47,7 +47,7 @@
           :options="times"
         />
       </div>
-      <input type="submit" class="button -fill-gradient" value="Submit" />
+      <base-button type="submit">Submit a new event</base-button>
     </form>
   </div>
 </template>
@@ -58,12 +58,14 @@ import Datepicker from 'vuejs-datepicker'
 import NProgress from 'nprogress'
 import BaseInput from '@/components/BaseInput.vue'
 import BaseSelect from '@/components/BaseSelect.vue'
+import BaseButton from '@/components/BaseButton.vue'
 
 export default {
   components: {
     Datepicker,
     BaseInput,
-    BaseSelect
+    BaseSelect,
+    BaseButton
   },
   data() {
     const times = []
@@ -106,6 +108,9 @@ export default {
         .catch(() => {
           NProgress.done()
         })
+    },
+    openMessage() {
+      window.alert('oi')
     }
   }
 }
