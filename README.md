@@ -55,7 +55,7 @@ Vue CLI v4.3.1
 Para adicionar 1.5 segundos à resposta
 
 ```
-> json-server -d 1500 db.json
+> json-server -d 1500 --watch db.json
 ```
 
 ## Descobrir quais pacotes podem ser atualizados
@@ -78,3 +78,4 @@ prettier   1.19.1  1.19.1   2.0.4  vue-real-world
 - In-component route guards
   - Every component must be implement this
 - Global and per-route guards
+  - Define load data methods in router configuration
