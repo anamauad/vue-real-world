@@ -76,6 +76,7 @@ export default {
               message: `Error while fetching event ${id}:` + error.message
             }
             dispatch('notification/add', notification, { root: true })
+            throw error
           })
       }
     }

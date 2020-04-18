@@ -32,7 +32,10 @@ const routes = [
     props: true,
     beforeEnter(to, from, next) {
       // pre-route guard
-      store.dispatch('event/fetchEvent', to.params.id).then(() => next())
+      store
+        .dispatch('event/fetchEvent', to.params.id)
+        .then(() => next())
+        .catch(() => next({ name: '404', params: { resource: 'event page' } }))
     }
   },
   {
@@ -43,12 +46,13 @@ const routes = [
   {
     path: '/404',
     name: '404',
-    component: NotFound
+    component: NotFound,
+    props: true
   },
   {
     // catch all route
     path: '*',
-    redirect: { name: '404' }
+    redirect: { name: '404', params: { resource: 'page' } }
   }
 ]
 
