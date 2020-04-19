@@ -25,6 +25,18 @@
         <div></div>
       </div>
     </transition>
+    <transition
+      appear
+      @before-enter="beforeEnterGsap"
+      @enter="enterGsap"
+      :css="false"
+    >
+      <div v-if="menuOpened" class="drawer">
+        Drawer animated with GSAP3
+        <div></div>
+        <div></div>
+      </div>
+    </transition>
 
     <base-button @click="infoOpened = !infoOpened">{{
       infoOpened ? 'Close' : 'About'
@@ -40,6 +52,7 @@
 <script>
 import BaseButton from '@/components/BaseButton.vue'
 import Velocity from 'velocity-animate'
+import gsap from 'gsap'
 
 export default {
   components: {
@@ -84,6 +97,19 @@ export default {
         { opacity: 0, width: '0em' },
         { duration: 500, easing: 'easeInCubic', complete: done }
       )
+    },
+    beforeEnterGsap(el) {
+      el.style.opacity = 0
+      el.style.transform = 'scale(0,0)'
+    },
+    enterGsap(el, done) {
+      gsap.to(el, {
+        duration: 1,
+        opacity: 1,
+        scale: 1,
+        ease: 'bounce.out',
+        onComplete: done
+      })
     }
   }
 }

@@ -24,6 +24,7 @@
 import { mapState } from 'vuex'
 import EventCard from '@/components/EventCard.vue'
 import store from '@/store'
+import gsap from 'gsap'
 
 function getPageEvents(to, next) {
   const currentPage = parseInt(to.query.page) || 1
@@ -55,6 +56,20 @@ export default {
   },
   beforeRouteUpdate(to, from, next) {
     getPageEvents(to, next)
+  },
+  mounted() {
+    gsap.from('.event-card', {
+      duration: 0.5,
+      opacity: 0,
+      scale: 1,
+      y: 20,
+      ease: 'power1',
+      // stagger: 0.1
+      stagger: {
+        each: 0.1,
+        from: 'edges'
+      }
+    })
   }
 }
 </script>
