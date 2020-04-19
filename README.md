@@ -1,5 +1,7 @@
 # vue-real-world
 
+Projeto criado durante o curso Unit Testing do VueMastery
+
 ## Project setup
 
 ```
@@ -11,22 +13,6 @@ npm install
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## Creating this project
 
