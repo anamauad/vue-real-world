@@ -2,7 +2,16 @@
   <div id="app">
     <nav-bar />
     <notification-container />
-    <router-view :key="$route.fullPath" />
+    <transition name="slide-fade" mode="out-in">
+      <router-view :key="$route.fullPath" />
+    </transition>
+    <button @click="toggleModal">About</button>
+    <transition name="fade">
+      <div v-if="isOpen" class="modal">
+        <p>App constructed during the Vuemastery.com courses</p>
+        <button @click="toggleModal">Close</button>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -11,9 +20,19 @@ import NavBar from '@/components/NavBar.vue'
 import NotificationContainer from '@/components/NotificationContainer.vue'
 
 export default {
+  data() {
+    return {
+      isOpen: false
+    }
+  },
   components: {
     NavBar,
     NotificationContainer
+  },
+  methods: {
+    toggleModal() {
+      this.isOpen = !this.isOpen
+    }
   }
 }
 </script>
@@ -240,6 +259,30 @@ select:focus::ms-value {
   background: #fff;
 }
 select::ms-expand {
+  opacity: 0;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease-out;
+}
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-fade-enter {
+  transform: translateX(10px);
+  opacity: 0;
+}
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.2s ease;
+}
+.slide-fade-leave-to {
+  transform: translateX(-10px);
   opacity: 0;
 }
 </style>
