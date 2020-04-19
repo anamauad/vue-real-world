@@ -7,16 +7,9 @@
 </template>
 
 <script>
+import { formFieldMixin } from '@/mixins/formFieldMixin'
 export default {
-  inheritAttrs: false, // props will not be applied to the main div container
-  props: {
-    value: [String, Number],
-    label: String,
-    id: {
-      type: String,
-      required: true
-    }
-  },
+  mixins: [formFieldMixin],
   computed: {
     listeners() {
       return {
@@ -25,11 +18,6 @@ export default {
         // Override input listener to work with v-model
         input: this.updateValue
       }
-    }
-  },
-  methods: {
-    updateValue(event) {
-      this.$emit('input', event.target.value)
     }
   }
 }
