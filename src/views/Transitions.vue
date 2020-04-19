@@ -1,5 +1,16 @@
 <template>
   <div>
+    <div class="clock">
+      <div :style="{ width: tweenedHours / 0.24 + '%' }" class="bar">
+        <span>{{ tweenedHours.toFixed(0) }}</span>
+      </div>
+      <div :style="{ width: tweenedMinutes / 0.6 + '%' }" class="bar">
+        <span>{{ tweenedMinutes.toFixed(0) }}</span>
+      </div>
+      <div :style="{ width: tweenedSeconds / 0.6 + '%' }" class="bar">
+        <span>{{ tweenedSeconds.toFixed(0) }}</span>
+      </div>
+    </div>
     <base-button @click="menuOpened = !menuOpened">Menu</base-button>
     <transition
       @before-enter="beforeEnter"
@@ -61,7 +72,37 @@ export default {
   data() {
     return {
       menuOpened: false,
-      infoOpened: false
+      infoOpened: false,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+      tweenedHours: 0,
+      tweenedMinutes: 0,
+      tweenedSeconds: 0,
+      interval: null
+    }
+  },
+  watch: {
+    seconds(newValue) {
+      gsap.to(this.$data, {
+        duration: 1,
+        ease: 'circ.out',
+        tweenedSeconds: newValue
+      })
+    },
+    minutes(newValue) {
+      gsap.to(this.$data, {
+        duration: 1,
+        ease: 'circ.out',
+        tweenedMinutes: newValue
+      })
+    },
+    hours(newValue) {
+      gsap.to(this.$data, {
+        duration: 1,
+        ease: 'circ.out',
+        tweenedHours: newValue
+      })
     }
   },
   methods: {
@@ -110,7 +151,27 @@ export default {
         ease: 'bounce.out',
         onComplete: done
       })
+    },
+    updateSeconds() {
+      if (this.seconds < 59) {
+        this.seconds++
+      } else {
+        this.updateTime()
+      }
+    },
+    updateTime() {
+      const now = new Date()
+      this.hours = now.getHours()
+      this.minutes = now.getMinutes()
+      this.seconds = now.getSeconds()
     }
+  },
+  created() {
+    this.updateTime()
+    this.interval = setInterval(this.updateSeconds, 1000)
+  },
+  destroyed() {
+    clearInterval(this.interval)
   }
 }
 </script>
@@ -145,5 +206,18 @@ export default {
 }
 .fade-leave-to {
   opacity: 0;
+}
+
+.clock {
+  padding: 20px 0;
+}
+.clock .bar {
+  padding: 5px;
+  background-color: #2c3e50;
+  border: 1px #16c0b0 solid;
+  min-width: 20px;
+}
+.clock .bar span {
+  color: white;
 }
 </style>
