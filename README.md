@@ -83,3 +83,17 @@ prettier   1.19.1  1.19.1   2.0.4  vue-real-world
 ## Componente de seleção em que as opções são objetos
 
 [https://vue-multiselect.js.org/]
+
+## Transitions
+
+1. What should the default style be?
+   - we can build our entering and leaving transitions
+1. What should the starting style be?
+   - define `.v-enter`
+1. What should the active style be? How long should the transition take? Should we speed up or slow down the transition during the course of the transition?
+   - define `v-enter-active`
+   - [https://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp]
+1. What should the ending style be?
+   - define `v-leave-to`
+1. What should the active leaving style be?
+   - define `v-leave-active`
